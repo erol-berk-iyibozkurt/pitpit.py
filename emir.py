@@ -1,5 +1,6 @@
 import numpy as np
 
+#Bir sinema salonu simülasyonu.
 class SinemaSalonu:
     def __init__(self, satirSayisi, sutunSayisi):
         """
