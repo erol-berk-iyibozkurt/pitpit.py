@@ -1,8 +1,5 @@
 import numpy as np
 
-print("Emir")
-print(123456)
-
 class SinemaSalonu:
     def __init__(self, satirSayisi, sutunSayisi):
         """
