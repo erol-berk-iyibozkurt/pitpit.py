@@ -14,7 +14,7 @@ def display_film_list():
 
 def menu():
     menu_list = [
-        "Filme göre", "Yönetmene göre", "Oyuncuya göre", "Yayınlanma yılına göre",
+        "Filme göre", "Film türüne göre", "Yönetmene göre", "Oyuncuya göre", "Yayınlanma yılına göre",
         "Film listesi üzerinden", "Rastgele", "Bulunduğun ayda vizyona girmiş filmler",
         "Mevsime göre filmler", "Ünlülerin önerileri"
     ]
@@ -27,8 +27,26 @@ def main():
     choice = input("Which recommendation do you want? (Enter the number): ")
     if choice.isdigit():
         choice = int(choice)
-        if choice == 5:
+        if choice == 1:
+            pass #Filme göre
+        elif choice == 2:
+            pass #Film türüne göre
+        elif choice == 3:
+            pass #Yönetmene göre
+        elif choice == 4:
+            pass # Oyuncuya göre
+        elif choice == 5:
+            pass # Yayınlanma yılına göre
+        elif choice == 6:
             display_film_list()
+        elif choice == 7:
+            pass # Rastgele
+        elif choice == 8:
+            pass # Bulunduğun ayda vizyona girmiş filmler
+        elif choice == 9:
+            pass # Mevsime göre filmler
+        elif choice == 10:
+            pass # Ünlülerin önerileri
         else:
             print("This feature is not implemented yet.")
     else:
