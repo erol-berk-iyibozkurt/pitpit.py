@@ -8,8 +8,8 @@ class SinemaSalonu:
         Belirtilen boyutlarda bir sinema salonu oluşturur.
 
         Args:
-        satir_sayisi (int): Salonun satir sayisi.
-        sutun_sayisi (int): Salonun sütun sayisi.
+        satirsayisi (int): Salonun satir sayisi.
+        sutunSayisi (int): Salonun sütun sayisi.
         """
         self.satirSayisi = satirSayisi
         self.sutunSayisi = sutunSayisi
@@ -17,14 +17,14 @@ class SinemaSalonu:
     
     def koltukRezerveEt(self, satir, sutun):
         """
-        Belirtilen koltuğu rezerve eder.
+        Belirtilen koltugu rezerve eder.
 
         Args:
         satir (int): Rezerve edilecek koltuğun satir numarasi.
         sutun (int): Rezerve edilecek koltuğun sütun numarasi.
 
         Returns:
-        bool: Rezervasyon basarili ise True, değilse False.
+        bool: Rezervasyon basarili ise True, degilse False.
         """
         if self.salon[satir, sutun] == 0:
             self.salon[satir, sutun] = 1
@@ -34,10 +34,10 @@ class SinemaSalonu:
 
     def koltukDurumu(self):
         """
-        Salonun koltuk durumunu gösterir.
+        Salonun koltuk durumunu gosterir.
 
         Returns:
-        numpy.ndarray: Salonun koltuk durumunu içeren matris.
+        numpy.ndarray: Salonun koltuk durumunu iceren matris.
         """
         return self.salon
     
@@ -59,19 +59,19 @@ class SinemaSalonu:
 satirSayisi = 5
 sutunSayisi = 5
 
-# Sinema salonunu oluştur
+# Sinema salonunu olustur
 salon = SinemaSalonu(satirSayisi, sutunSayisi)
 
-# Bazı koltukları rezerve et
+# Bazı koltuklari rezerve et
 salon.koltukRezerveEt(2, 3)
 salon.koltukRezerveEt(0, 1)
 salon.koltukRezerveEt(4, 4)
 
-# Salonun koltuk durumunu göster
+# Salonun koltuk durumunu goster
 print("Salonun koltuk durumu:")
 print(salon.koltukDurumu())
 
-# Boş koltukları göster
+# Bos koltukları göster
 print("Boş koltuklar:")
 print(salon.bosKoltuklar())
     
