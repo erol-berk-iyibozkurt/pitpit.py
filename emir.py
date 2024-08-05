@@ -1,7 +1,5 @@
 import numpy as np
 
-liste=[1,2,3,4]
+print("Emir")
+print(123456)
 
-for i in liste:
-    print(i,end=" ")
-    
