@@ -1,7 +1,6 @@
 
 import numpy as np
 
-# Film bilgilerini tanımla
 # Film bilgilerinin tanimlanmasi.
 filmler = np.array([
     ["Film A", "Yönetmen 1", "Oyuncu 1, Oyuncu 2", "Tür 1", "2010", "8.2"],
