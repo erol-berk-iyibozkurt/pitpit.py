@@ -93,8 +93,14 @@ class Film:
             filmAdi = input("Film adını girin: ")
             oneriler = self.filmeGoreOneri(filmAdi)
             if oneriler is not None:
+                if oneriler['Öneri Yüzdesi'] > 1:
+                    print("Tespit edilen Film:")
+                    print(oneriler[['Title', 'Genre', 'Director', 'Actors', 'Rating', 'Öneri Yüzdesi']].head(1))
+                else:
+                    print("Önerilen Filmler:")
+                    print(oneriler[['Title', 'Genre', 'Director', 'Actors', 'Rating', 'Öneri Yüzdesi']].head(6))
                 print("Önerilen Filmler:")
-                print(oneriler[['Title', 'Genre', 'Director', 'Actors', 'Rating', 'Öneri Yüzdesi']].head(6))
+                print(oneriler[['Title', 'Genre', 'Director', 'Actors', 'Rating', 'Öneri Yüzdesi']].iloc[1:6])
             else:
                 print("Öneri bulunamadı.")
         elif secim == 2:
