@@ -5,7 +5,7 @@ import seaborn as sns
 class Film:
     def __init__(self):
         try:
-            self.data = pd.read_csv("C:/Users/Emir Kaçar/Desktop/netflix_titles.csv")
+            self.data = pd.read_csv("/Users/erolberkiyibozkurt/Desktop/netflix_titles.csv", on_bad_lines='skip')
         except FileNotFoundError:
             print(f"Hata: Dosya bulunamadi.Lutfen dogru yolu girin.")
             self.data = None  # Veri yoksa `data` None olarak ayarlanır.

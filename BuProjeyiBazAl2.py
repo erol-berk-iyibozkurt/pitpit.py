@@ -14,22 +14,22 @@ class Film:
         self.favori_liste = []  # Favori film listesini tutar.
         
     def bilgileriGoster(self):
-        print("\n1. Tüm Listeyi göster \n2. ilk 5 filmi göster \n 3. Son 5 filmi göster \n 4. ilk ... filmi göster \n 5. Son ... filmi göster")
+        print("\n1. Tüm Listeyi göster \n2. ilk 5 filmi göster \n3. Son 5 filmi göster \n4. ilk ... filmi göster \n5. Son ... filmi göster")
         choice = input("Kaç filmi daha görüntülemek istersiniz? (Lütfen sayı giriniz): ")
         if choice.isdigit():
             choice = int(choice)
             if choice == 1:
-                print(pd.DataFrame(self.data))
+                print(self.data)
             elif choice == 2:
-                return self.data.head(5)
+                print(self.data.head(5))
             elif choice == 3:
-                return self.data.tail(5)
+                print(self.data.tail(5))
             elif choice == 4:
                 x = int(input("Kaç tane veri görmek istersiniz?"))
-                return self.data.head(x)
+                print( self.data.head(x))
             elif choice == 5:
                 x = int(input("Kaç tane veri görmek istersiniz?"))
-                return self.data.tail(x)
+                print(self.data.tail(x))
             else:
                 print("İstediğiniz iişlemi gerçekleştiremedik. Lütfen tekrar deneyin.")
         else:
@@ -37,7 +37,7 @@ class Film:
     
     def filmEkle(self,filmAdi):
         if self.data is not None:
-            if filmAdi in self.data['title'].values:
+            if filmAdi in self.data['Title'].values:
                 self.favori_liste.append(filmAdi)
                 print(f"{filmAdi} adlı film favori listenize eklendi.")
             else:
@@ -47,7 +47,7 @@ class Film:
     
     def yilaGoreFilmler(self, yil):  #Yila gore filmleri listeler.
         if self.data is not None:
-            yil_filmleri = self.data[self.data['release_year'] == yil]
+            yil_filmleri = self.data[self.data['Year'] == yil]
             return yil_filmleri
         else:
             print("Veri yok.Film aramak için once verileri yukleyin.")
@@ -60,6 +60,66 @@ class Film:
                 print(film)
         else:
             print("Henüz favori film eklemediniz.")
+
+    def yonetmeneGoreFilmler(self, yonetmen):  # Yönetmene göre filmleri listeler.
+        if self.data is not None:
+            yonetmen_filmleri = self.data[self.data['Director'].str.contains(yonetmen, case=False)]
+            if not yonetmen_filmleri.empty:
+                print(yonetmen_filmleri[['Title', 'Year', 'Director']])
+            else:
+                print(f"{yonetmen} yönetmenine ait film bulunamadı.")
+        else:
+            print("Veri yok.")
+    
+    def yonetmenleriListele(self):
+        if self.data is not None:
+            yonetmenler = self.data['Director'].value_counts()
+            print("Yönetmenler:\n", yonetmenler.head(20))
+        else:
+            print("Veri yok.")
+
+    def yonetmenAltMenu(self):
+        print("\n1. Yönetmenleri Listele")
+        print("2. Yönetmene Göre Film Ara")
+        secim = input("Bir seçim yapın: ")
+        
+        if secim == '1':
+            self.yonetmenleriListele()
+        elif secim == '2':
+            yonetmen_adi = input("Yönetmen adını girin: ")
+            self.yonetmeneGoreFilmler(yonetmen_adi)
+        else:
+            print("Geçersiz seçim. Tekrar deneyin.")
+
+    def oyuncuyaGoreFilmler(self, oyuncu):
+        if self.data is not None:
+            oyuncu_filmleri = self.data[self.data['Actors'].str.contains(oyuncu, case=False)]
+            if not oyuncu_filmleri.empty:
+                print(oyuncu_filmleri[['Title', 'Year', 'Actors']])
+            else:
+                print(f"{oyuncu} aktörüne ait film bulunamadı.")
+        else:
+            print("Veri yok.")
+
+    def oyunculariListele(self):
+        if self.data is not None:
+            oyuncular = self.data['Actors'].str.split(',').explode().str.strip().value_counts()
+            print("Oyuncular:\n", oyuncular.head(20))
+        else:
+            print("Veri yok.")
+
+    def oyuncuAltMenu(self):
+        print("\n1. Oyuncuları Listele")
+        print("2. Oyuncuya Göre Film Ara")
+        secim = input("Bir seçim yapın: ")
+        
+        if secim == '1':
+            self.oyunculariListele()
+        elif secim == '2':
+            oyuncu_adi = input("Oyuncu adını girin: ")
+            self.oyuncuyaGoreFilmler(oyuncu_adi)
+        else:
+            print("Geçersiz seçim. Tekrar deneyin.")
     
   
     def ulkelereGoreFilmSayisi(self):   #Ulkeye gore filmleri listeler.
@@ -75,15 +135,18 @@ class Film:
         else:
             print("Veri yok.")
     
-    def tureGoreFilmler(self,tur):  #Belirli bir turdeki filmleri listeler.
+    def tureGoreFilmler(self, tur):  
         if self.data is not None:
-            turFilmler=self.data[self.data["listed_in"].str.contains(tur, case=False)]
+            # Tür sütunundaki filmleri ayırıp, filtreleme yapacağız
+            turFilmler = self.data[self.data['Genre'].str.contains(tur, case=False, na=False)]
             if not turFilmler.empty:
-                print(turFilmler[['title', 'release_year']])
+                print(f"{tur} türünde bulunan filmler:")
+                print(turFilmler[['Title', 'Year', 'Genre']])
             else:
                 print(f"{tur} türünde film bulunamadı.")
         else:
             print("Veri yok.")
+
 
     def filmoner(self):
         print("\n1. Seçtiğim Filme göre film öner.")
@@ -93,12 +156,8 @@ class Film:
             filmAdi = input("Film adını girin: ")
             oneriler = self.filmeGoreOneri(filmAdi)
             if oneriler is not None:
-                if oneriler['Öneri Yüzdesi'] > 1:
-                    print("Tespit edilen Film:")
-                    print(oneriler[['Title', 'Genre', 'Director', 'Actors', 'Rating', 'Öneri Yüzdesi']].head(1))
-                else:
-                    print("Önerilen Filmler:")
-                    print(oneriler[['Title', 'Genre', 'Director', 'Actors', 'Rating', 'Öneri Yüzdesi']].head(6))
+                print("Tespit edilen Film:")
+                print(oneriler[['Title', 'Genre', 'Director', 'Actors', 'Rating', 'Öneri Yüzdesi']].head(1))
                 print("Önerilen Filmler:")
                 print(oneriler[['Title', 'Genre', 'Director', 'Actors', 'Rating', 'Öneri Yüzdesi']].iloc[1:6])
             else:
@@ -180,9 +239,9 @@ class Film:
             print("\n1. Veri Bilgilerini Göster")
             print("2. Favori Film Ekle")
             print("3. Yila Göre Filmler")
-            print("4. Ulkelere Göre Film Sayısı")
+            print("4. Yönetmene göre Filmler")
             print("5. Favori Listeyi Göster")
-            print("6. Verilerin Sutunlarini Goster")
+            print("6. oyuncuya göre Filmler")
             print("7. Ture gore filmleri listele")
             print("8. Film öner")
             print("9. Cikis")
@@ -197,11 +256,11 @@ class Film:
                 yil = int(input("Yili girin: "))
                 print(self.yilaGoreFilmler(yil))
             elif secim == '4':
-                self.ulkelereGoreFilmSayisi()
+                self.yonetmenAltMenu()
             elif secim == '5':
                 self.favoriListeyiGoster()
             elif secim == '6':
-                self.verilerinSutunlariniGoster()
+                self.oyuncuAltMenu()
             elif secim== '7':
                 tur=input("Turu giriniz: ")
                 self.tureGoreFilmler(tur)
