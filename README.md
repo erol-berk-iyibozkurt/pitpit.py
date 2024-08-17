@@ -1,6 +1,6 @@
 ## PıtPıt.Py Ekibi Sunar
 
-![Logo PıtPıt.Py](images/PıtPıt.Py.png)&width=1200&height=300}
+<img src="images/PıtPıt.Py.png" alt="Logo PıtPıt.Py" width="250" height="250"/>
 
 
 # Film Öneri ve Yönetim Sistemi
