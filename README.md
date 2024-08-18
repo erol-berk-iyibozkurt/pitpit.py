@@ -3,7 +3,10 @@
 <img src="images/PıtPıt.Py.png" alt="Logo PıtPıt.Py" width="250" height="250"/>
 
 
-# Film Öneri ve Yönetim Sistemi
+YetGen Core Python programının bitirme projesi olarak 4 kişilik bir ekip tarafından yapılmıştır.
+
+
+# Film Öneri Sistemi
 
 Bu proje, IMDB film veritabanını csv formatındaki bir dosyadan kullanarak kullanıcılara çeşitli film işlemleri ve önerileri sunan bir Python projesi olması amacıyla tasarlandı. Proje ürünümüzün adı Pıtırflix.
 

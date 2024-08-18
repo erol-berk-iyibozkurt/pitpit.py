@@ -257,10 +257,10 @@ class Film:
         while True:
             print("\n1. Veri Bilgilerini Göster")
             print("2. Favori Film Ekle")
-            print("3. Yila Göre Filmler")
+            print("3. Yıla Göre Filmler")
             print("4. Yönetmene göre Filmler")
             print("5. Favori Listeyi Göster")
-            print("6. oyuncuya göre Filmler")
+            print("6. Oyuncuya göre Filmler")
             print("7. Ture gore filmleri listele")
             print("8. Film öner")
             print("9. Cikis")
